@@ -4,7 +4,7 @@ A small app to practice "programming" a seven segment one digit display via bina
 
 ## Preview
 
-![alt text](image-1.png)
+![alt text](screenshot.jpeg)
 
 ## Segment Encoding
 
@@ -56,6 +56,6 @@ To activate segments `a`, `b`, `c`, and `d` and then deactivate them:
 This encoding and structure will allow you to control a 7-segment display using binary commands with characters representing each segment.
 
 
-## Possible examples
+## Possible characters
 
-![alt text](image.png)
+![alt text](possible_characters.png)
