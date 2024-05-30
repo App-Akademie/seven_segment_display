@@ -13,6 +13,7 @@ class _RamValueDisplayState extends State<RamValueDisplay> {
   @override
   Widget build(BuildContext context) {
     final segmentController = Provider.of<SegmentController>(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: segmentController.ram.map((bool value) {

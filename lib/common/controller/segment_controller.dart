@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class SegmentController extends ChangeNotifier {
   List<bool> ram = List<bool>.filled(7, false);
   final Map<String, int> segmentMap = {
-    '00000': 0,
-    '00001': 1,
-    '00010': 2,
-    '00011': 3,
-    '00100': 4,
-    '00101': 5,
-    '00110': 6,
+    '00001': 0, // a
+    '00010': 1, // b
+    '00011': 2, // c
+    '00100': 3, // d
+    '00101': 4, // e
+    '00110': 5, // f
+    '00111': 6, // g
   };
 
   Future<void> executeCommands(List<String> lines) async {
