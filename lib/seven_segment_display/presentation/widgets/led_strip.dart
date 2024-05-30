@@ -5,13 +5,15 @@ import 'package:seven_segement_display/common/constants/constants.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/draw_triangle_shape.dart';
 
 class LedStrip extends StatelessWidget {
-  const LedStrip(
-      {super.key,
-      required this.isOn,
-      required this.isVertical,
-      required this.x,
-      required this.description,
-      required this.y});
+  const LedStrip({
+    super.key,
+    required this.isOn,
+    required this.isVertical,
+    required this.x,
+    required this.description,
+    required this.y,
+  });
+
   final bool isOn;
   final bool isVertical;
   final double x;

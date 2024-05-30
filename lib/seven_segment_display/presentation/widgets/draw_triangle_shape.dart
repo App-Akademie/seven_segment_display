@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DrawTriangleShape extends CustomPainter {
-  late Paint painter1;
-  late Paint painter2;
-
   DrawTriangleShape(Color color) {
     painter1 = Paint()
       ..color = color
@@ -13,6 +10,9 @@ class DrawTriangleShape extends CustomPainter {
       ..strokeWidth = 2.0
       ..style = PaintingStyle.stroke;
   }
+
+  late Paint painter1;
+  late Paint painter2;
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -22,17 +22,14 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 30,
-          ),
+          const SizedBox(height: 30),
           const RamValueDisplay(),
-          const SizedBox(
-            height: 50,
-          ),
-          const Digit(),
-          const SizedBox(
-            height: 30,
-          ),
+          const SizedBox(height: 50),
+          Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(border: Border.all()),
+              child: const Digit()),
+          const SizedBox(height: 30),
           Center(
             child: SizedBox(
               width: 300,
@@ -46,19 +43,23 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 30,
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OutlinedButton(
+                onPressed: () => segementController.reset(),
+                child: const Text("RESET"),
+              ),
+              const SizedBox(width: 32),
+              OutlinedButton(
+                onPressed: () => segementController
+                    .executeCommands(controller.text.split('\n')),
+                child: const Text("EXECUTE"),
+              ),
+            ],
           ),
-          OutlinedButton(
-              onPressed: () => segementController
-                  .executeCommands(controller.text.split('\n')),
-              child: const Text("EXECUTE")),
-          const SizedBox(
-            height: 15,
-          ),
-          OutlinedButton(
-              onPressed: () => segementController.reset(),
-              child: const Text("RESET"))
+          const SizedBox(height: 15),
         ],
       ),
     );

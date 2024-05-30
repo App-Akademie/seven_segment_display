@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seven_segement_display/common/constants/constants.dart';
 import 'package:seven_segement_display/common/controller/segment_controller.dart';
-import 'package:seven_segement_display/seven_segment_display/presentation/widgets/led_strips.dart';
-
-import '../../../common/constants/constants.dart';
+import 'package:seven_segement_display/seven_segment_display/presentation/widgets/led_strip.dart';
 
 class Digit extends StatelessWidget {
-  const Digit({
-    super.key,
-  });
+  const Digit({super.key});
+
   @override
   Widget build(BuildContext context) {
     final segementController = Provider.of<SegmentController>(context);
