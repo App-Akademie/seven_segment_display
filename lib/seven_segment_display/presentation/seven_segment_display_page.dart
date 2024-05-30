@@ -53,6 +53,9 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
               onPressed: () => segementController
                   .executeCommands(controller.text.split('\n')),
               child: const Text("EXECUTE")),
+          const SizedBox(
+            height: 15,
+          ),
           OutlinedButton(
               onPressed: () => segementController.reset(),
               child: const Text("RESET"))
