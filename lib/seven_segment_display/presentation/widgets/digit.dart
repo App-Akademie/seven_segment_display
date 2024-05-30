@@ -9,7 +9,8 @@ class Digit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final segementController = Provider.of<SegmentController>(context);
+    final segmentController = Provider.of<SegmentController>(context);
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       height: kLength * 2 + kThickness,
@@ -18,7 +19,7 @@ class Digit extends StatelessWidget {
         children: [
           //A
           LedStrip(
-            isOn: segementController.ram[0],
+            isOn: segmentController.ram[0],
             isVertical: false,
             x: kThickness / 2,
             y: 0,
@@ -26,7 +27,7 @@ class Digit extends StatelessWidget {
           ),
           //B
           LedStrip(
-            isOn: segementController.ram[1],
+            isOn: segmentController.ram[1],
             isVertical: true,
             x: kLength + kThickness,
             y: kThickness / 2,
@@ -34,7 +35,7 @@ class Digit extends StatelessWidget {
           ),
           //C
           LedStrip(
-            isOn: segementController.ram[2],
+            isOn: segmentController.ram[2],
             isVertical: true,
             x: kLength + kThickness,
             y: kThickness / 2 + kLength,
@@ -42,7 +43,7 @@ class Digit extends StatelessWidget {
           ),
           //D
           LedStrip(
-            isOn: segementController.ram[3],
+            isOn: segmentController.ram[3],
             isVertical: false,
             x: kThickness / 2,
             y: (2 * kLength),
@@ -50,7 +51,7 @@ class Digit extends StatelessWidget {
           ),
           //E
           LedStrip(
-            isOn: segementController.ram[4],
+            isOn: segmentController.ram[4],
             isVertical: true,
             x: kThickness,
             y: kThickness / 2 + kLength,
@@ -58,7 +59,7 @@ class Digit extends StatelessWidget {
           ),
           //F
           LedStrip(
-            isOn: segementController.ram[5],
+            isOn: segmentController.ram[5],
             isVertical: true,
             x: kThickness,
             y: kThickness / 2,
@@ -66,7 +67,7 @@ class Digit extends StatelessWidget {
           ),
           //G
           LedStrip(
-            isOn: segementController.ram[6],
+            isOn: segmentController.ram[6],
             isVertical: false,
             x: kThickness / 2,
             y: kLength,

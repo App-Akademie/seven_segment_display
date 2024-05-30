@@ -14,9 +14,11 @@ class SevenSegmentDisplayPage extends StatefulWidget {
 
 class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
   final controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final segementController = Provider.of<SegmentController>(context);
+    final segmentController = Provider.of<SegmentController>(context);
+
     return Scaffold(
       backgroundColor: Colors.grey,
       body: Column(
@@ -48,12 +50,12 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OutlinedButton(
-                onPressed: () => segementController.reset(),
+                onPressed: () => segmentController.reset(),
                 child: const Text("RESET"),
               ),
               const SizedBox(width: 32),
               OutlinedButton(
-                onPressed: () => segementController
+                onPressed: () => segmentController
                     .executeCommands(controller.text.split('\n')),
                 child: const Text("EXECUTE"),
               ),
