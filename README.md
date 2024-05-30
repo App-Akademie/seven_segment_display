@@ -1,6 +1,3 @@
-### Preview
-![alt text](image-1.png)
-
 Certainly! Below is the encoding for the segments using characters instead of numbers. Each segment will be represented by a character from 'a' to 'g'.
 
 ### Segment Encoding
@@ -53,5 +50,9 @@ This encoding and structure will allow you to control a 7-segment display using 
 ### Possible examples
 
 ![alt text](image.png)
+
+
+### Preview
+![alt text](image-1.png)
 
 
