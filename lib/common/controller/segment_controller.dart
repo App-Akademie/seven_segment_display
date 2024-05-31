@@ -14,11 +14,20 @@ class SegmentController extends ChangeNotifier {
 
   Future<void> executeCommands(List<String> lines) async {
     if (lines.isEmpty) return;
-    for (String line in lines) {
-      if (line.isEmpty) continue;
+    // Go over each line of code and treat it accordingly.
+    for (String l in lines) {
+      // Skip empty lines.
+      if (l.isEmpty) continue;
+      final line = l.trim();
+      // Go over each command per line and act accordingly.
       for (String command in line.split(" ")) {
         bool state = command[0] == '1';
         String segment = command.substring(1);
+
+        // Switch all on or off when state + 11111 is encountered.
+        if (segment == '11111') {
+          ram = List<bool>.filled(7, state);
+        }
 
         if (segmentMap.containsKey(segment)) {
           int? index = segmentMap[segment];

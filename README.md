@@ -15,6 +15,7 @@ A small app to practice "programming" a seven segment one digit display via bina
 - Segment `e`: 00101
 - Segment `f`: 00110
 - Segment `g`: 00111
+- All segments: 11111
 
 ## Command Structure
 
@@ -62,7 +63,11 @@ To activate segments `a`, `b`, `c`, and `d` and then deactivate them:
 000011
 000100
 ```
-This encoding and structure will allow you to control a 7-segment display using binary commands with characters representing each segment.
+
+## Turning all segments on / off:
+
+- Turn all on: `111111`
+- Turn all off: `011111`
 
 ## Possible characters
 
