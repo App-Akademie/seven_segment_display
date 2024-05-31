@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:seven_segement_display/seven_segment_display/domain/script_model.dart';
 
 class SegmentController extends ChangeNotifier {
+  List<ScriptModel> scripts = [];
   List<bool> ram = List<bool>.filled(7, false);
   final Map<String, int> segmentMap = {
     '00001': 0, // a
@@ -21,6 +23,11 @@ class SegmentController extends ChangeNotifier {
       final line = l.trim();
       // Go over each command per line and act accordingly.
       for (String command in line.split(" ")) {
+        for (ScriptModel script in scripts) {
+          if (command == script.scriptName) {
+            await executeCommands(script.commandLines);
+          }
+        }
         bool state = command[0] == '1';
         String segment = command.substring(1);
 
@@ -44,6 +51,13 @@ class SegmentController extends ChangeNotifier {
 
   void reset() {
     ram = List<bool>.filled(7, false);
+    notifyListeners();
+  }
+
+  void addScript(List<String> lines, String scriptName) {
+    ScriptModel newScript =
+        ScriptModel(scriptName: scriptName, commandLines: lines);
+    scripts.add(newScript);
     notifyListeners();
   }
 }

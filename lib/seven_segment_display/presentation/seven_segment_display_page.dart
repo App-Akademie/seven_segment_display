@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:seven_segement_display/common/controller/segment_controller.dart';
+import 'package:seven_segement_display/seven_segment_display/presentation/widgets/add_new_script_popup.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/digit.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/ram_value_display.dart';
 
@@ -27,10 +28,20 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
           const SizedBox(height: 30),
           const RamValueDisplay(),
           const SizedBox(height: 50),
-          Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(border: Border.all()),
-              child: const Digit()),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: const Digit()),
+              Column(
+                children: segmentController.scripts.map((model) {
+                  return Text(model.scriptName);
+                }).toList(),
+              )
+            ],
+          ),
           const SizedBox(height: 30),
           Center(
             child: SizedBox(
@@ -46,18 +57,31 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
             ),
           ),
           const SizedBox(height: 30),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OutlinedButton(
-                onPressed: () => segmentController.reset(),
-                child: const Text("RESET"),
-              ),
-              const SizedBox(width: 32),
               OutlinedButton(
                 onPressed: () => segmentController
                     .executeCommands(controller.text.split('\n')),
                 child: const Text("EXECUTE"),
+              ),
+              const SizedBox(height: 15),
+              OutlinedButton(
+                onPressed: () => segmentController.reset(),
+                child: const Text("RESET"),
+              ),
+              const SizedBox(height: 15),
+              OutlinedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AddScriptAlertDialog(
+                          scriptLines: controller.text.split('\n'));
+                    },
+                  );
+                },
+                child: const Text("ADD SCRIPT"),
               ),
             ],
           ),
