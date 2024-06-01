@@ -36,11 +36,6 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(border: Border.all()),
                   child: const Digit()),
-              Column(
-                children: segmentController.scripts.map((model) {
-                  return Text(model.scriptName);
-                }).toList(),
-              )
             ],
           ),
           const SizedBox(height: 30),
@@ -52,6 +47,14 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
               segmentController.changeLoopStatus(value);
             },
           ),
+          const SizedBox(height: 30),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text("Scripts:"),
+            const SizedBox(width: 15),
+            ...segmentController.scripts.map((model) {
+              return Text("${model.scriptName},");
+            }),
+          ]),
           const SizedBox(height: 30),
           Center(
             child: SizedBox(
