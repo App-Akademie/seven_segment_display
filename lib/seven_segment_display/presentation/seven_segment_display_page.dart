@@ -46,6 +46,13 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
           const SizedBox(height: 30),
           const ExecutionSpeedSwitch(),
           const SizedBox(height: 30),
+          Switch(
+            value: segmentController.executeInLoop,
+            onChanged: (bool value) {
+              segmentController.changeLoopStatus(value);
+            },
+          ),
+          const SizedBox(height: 30),
           Center(
             child: SizedBox(
               width: 300,

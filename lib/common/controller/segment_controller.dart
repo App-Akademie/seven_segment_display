@@ -7,6 +7,7 @@ class SegmentController extends ChangeNotifier {
   List<bool> ram = List<bool>.filled(7, false);
   ExecutionSpeed currentExecutionSpeed = ExecutionSpeed.normalSpeed;
   bool shouldStopExecution = false;
+  bool executeInLoop = false;
 
   final Map<String, int> segmentMap = {
     '00001': 0, // a
@@ -60,6 +61,9 @@ class SegmentController extends ChangeNotifier {
           await Future.delayed(const Duration(milliseconds: 2000));
       }
     }
+    if (executeInLoop) {
+      executeCommands(lines);
+    }
   }
 
   void reset() {
@@ -77,6 +81,11 @@ class SegmentController extends ChangeNotifier {
 
   void changeExecutionSpeed(ExecutionSpeed newExecutionSpeed) {
     currentExecutionSpeed = newExecutionSpeed;
+    notifyListeners();
+  }
+
+  void changeLoopStatus(bool newStatus) {
+    executeInLoop = newStatus;
     notifyListeners();
   }
 }
