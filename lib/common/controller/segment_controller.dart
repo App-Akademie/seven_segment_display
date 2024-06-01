@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:seven_segement_display/seven_segment_display/domain/executution_speed.dart';
 import 'package:seven_segement_display/seven_segment_display/domain/script_model.dart';
 
 class SegmentController extends ChangeNotifier {
   List<ScriptModel> scripts = [];
   List<bool> ram = List<bool>.filled(7, false);
+  ExecutionSpeed currentExecutionSpeed = ExecutionSpeed.normalSpeed;
+
   final Map<String, int> segmentMap = {
     '00001': 0, // a
     '00010': 1, // b
@@ -45,7 +48,14 @@ class SegmentController extends ChangeNotifier {
         notifyListeners();
       }
 
-      await Future.delayed(const Duration(seconds: 1));
+      switch (currentExecutionSpeed) {
+        case ExecutionSpeed.normalSpeed:
+          await Future.delayed(const Duration(milliseconds: 1000));
+        case ExecutionSpeed.doubleSpeed:
+          await Future.delayed(const Duration(milliseconds: 500));
+        case ExecutionSpeed.halfSpeed:
+          await Future.delayed(const Duration(milliseconds: 2000));
+      }
     }
   }
 
@@ -58,6 +68,11 @@ class SegmentController extends ChangeNotifier {
     ScriptModel newScript =
         ScriptModel(scriptName: scriptName, commandLines: lines);
     scripts.add(newScript);
+    notifyListeners();
+  }
+
+  void changeExecutionSpeed(ExecutionSpeed newExecutionSpeed) {
+    currentExecutionSpeed = newExecutionSpeed;
     notifyListeners();
   }
 }

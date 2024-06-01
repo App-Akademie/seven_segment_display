@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:seven_segement_display/common/controller/segment_controller.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/add_new_script_popup.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/digit.dart';
+import 'package:seven_segement_display/seven_segment_display/presentation/widgets/execution_speed_switch.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/ram_value_display.dart';
 
 class SevenSegmentDisplayPage extends StatefulWidget {
@@ -43,6 +44,8 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
             ],
           ),
           const SizedBox(height: 30),
+          const ExecutionSpeedSwitch(),
+          const SizedBox(height: 30),
           Center(
             child: SizedBox(
               width: 300,
@@ -57,7 +60,7 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
             ),
           ),
           const SizedBox(height: 30),
-          Column(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OutlinedButton(
@@ -65,12 +68,12 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
                     .executeCommands(controller.text.split('\n')),
                 child: const Text("EXECUTE"),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(width: 15),
               OutlinedButton(
                 onPressed: () => segmentController.reset(),
                 child: const Text("RESET"),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(width: 15),
               OutlinedButton(
                 onPressed: () {
                   showDialog(
@@ -85,7 +88,6 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
               ),
             ],
           ),
-          const SizedBox(height: 15),
         ],
       ),
     );
