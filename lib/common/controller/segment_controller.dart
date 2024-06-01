@@ -6,6 +6,7 @@ class SegmentController extends ChangeNotifier {
   List<ScriptModel> scripts = [];
   List<bool> ram = List<bool>.filled(7, false);
   ExecutionSpeed currentExecutionSpeed = ExecutionSpeed.normalSpeed;
+  bool shouldStopExecution = false;
 
   final Map<String, int> segmentMap = {
     '00001': 0, // a
@@ -18,9 +19,11 @@ class SegmentController extends ChangeNotifier {
   };
 
   Future<void> executeCommands(List<String> lines) async {
+    shouldStopExecution = false;
     if (lines.isEmpty) return;
     // Go over each line of code and treat it accordingly.
     for (String l in lines) {
+      if (shouldStopExecution) return;
       // Skip empty lines.
       if (l.isEmpty) continue;
       final line = l.trim();
@@ -60,6 +63,7 @@ class SegmentController extends ChangeNotifier {
   }
 
   void reset() {
+    shouldStopExecution = true;
     ram = List<bool>.filled(7, false);
     notifyListeners();
   }
