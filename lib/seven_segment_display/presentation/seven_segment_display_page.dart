@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seven_segement_display/common/controller/highlight_line_controller.dart';
 import 'package:seven_segement_display/common/controller/segment_controller.dart';
+import 'package:seven_segement_display/seven_segment_display/application/get_highlighted_text_spans.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/add_new_script_popup.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/digit.dart';
 import 'package:seven_segement_display/seven_segment_display/presentation/widgets/execution_speed_switch.dart';
@@ -20,6 +22,8 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
   @override
   Widget build(BuildContext context) {
     final segmentController = Provider.of<SegmentController>(context);
+    final highlightingController =
+        Provider.of<HighlightLineController>(context);
 
     return Scaffold(
       backgroundColor: Colors.grey,
@@ -50,33 +54,53 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
             ),
             const SizedBox(height: 30),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Text("Scripts:"),
+              const Text("Funktionen:"),
               const SizedBox(width: 15),
               ...segmentController.scripts.map((model) {
                 return Text("${model.scriptName},");
               }),
             ]),
             const SizedBox(height: 30),
-            Center(
-              child: SizedBox(
-                width: 300,
-                child: TextField(
-                  controller: controller,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+            !segmentController.executing
+                ? Center(
+                    child: SizedBox(
+                      width: 300,
+                      child: TextField(
+                        controller: controller,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        minLines: 3,
+                        maxLines: 8,
+                      ),
+                    ),
+                  )
+                : Container(
+                    height: 120,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        border: Border.all(
+                            width: 1,
+                            color: const Color.fromARGB(255, 73, 73, 73)),
+                        borderRadius: BorderRadius.circular(7)),
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: RichText(
+                            text: TextSpan(
+                                children: getHighlightedTextSpans(controller,
+                                    highlightingController.highlightedLine))),
+                      ),
+                    ),
                   ),
-                  minLines: 3,
-                  maxLines: 8,
-                ),
-              ),
-            ),
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 OutlinedButton(
-                  onPressed: () => segmentController
-                      .executeCommands(controller.text.split('\n')),
+                  onPressed: () => segmentController.executeCommands(
+                      controller.text.split('\n'), highlightingController),
                   child: const Text("EXECUTE"),
                 ),
                 const SizedBox(width: 15),
@@ -95,7 +119,7 @@ class _SevenSegmentDisplayPageState extends State<SevenSegmentDisplayPage> {
                       },
                     );
                   },
-                  child: const Text("ADD SCRIPT"),
+                  child: const Text("ADD FUNCTION"),
                 ),
               ],
             ),

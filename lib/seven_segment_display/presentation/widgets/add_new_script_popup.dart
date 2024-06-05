@@ -20,7 +20,7 @@ class AddScriptAlertDialog extends StatelessWidget {
           TextField(
             controller: controller,
             decoration: const InputDecoration(
-              hintText: "Script Name",
+              hintText: "Function Name",
               border: OutlineInputBorder(),
             ),
           ),
@@ -32,7 +32,7 @@ class AddScriptAlertDialog extends StatelessWidget {
                 segmentController.addScript(scriptLines, controller.text);
                 Navigator.pop(context);
               },
-              child: const Text("ADD SCRIPT"))
+              child: const Text("ADD FUNCTION"))
         ],
       ),
     );
